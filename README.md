@@ -6,7 +6,7 @@ Installs [cherrymusic](http://www.fomori.org/cherrymusic/) on a Linux system.
 Requirements
 ------------
 
-?
+Nothing specific so far.
 
 Role Variables
 --------------
