@@ -1,0 +1,56 @@
+---
+# tasks file for cherrymusic
+- name: "install packages"
+  apt: pkg={{item}} state=present
+  with_items:
+    - python3
+    - mpg123
+    - faad
+    - vorbis-tools
+    - flac
+    - imagemagick
+    - lame
+    - python3-unidecode
+    - git
+# Optionally, you can replace the packages “mpg123”, “faad”, “vorbis-tools”,
+# “flac” and “lame” with “ffmpeg” if you like. The advantage with ffmpeg is
+# that you can also decode WMA files
+
+- name: "adduser cherrymusic"
+  user: name=cherrymusic home=/home/cherrymusic createhome=yes state=present system=no
+
+- name: "git clone cherrymusic"
+  git:
+    repo=git://github.com/devsnd/cherrymusic.git
+    dest=/home/cherrymusic/code/
+    version=devel
+    accept_hostkey=yes
+    update=yes
+  become: true
+  become_user: cherrymusic
+
+- name: "copy our cherrypy bootstrap script"
+  copy: src=bootstrap.py dest=/home/cherrymusic/code/bootstrap.py owner=cherrymusic mode=0755
+
+- name: "bootstrap cherrypy"
+  shell: echo "y" | python3 bootstrap.py 
+  args:
+    chdir: /home/cherrymusic/code/
+    creates: /home/cherrymusic/code/cherrypy
+  become: true
+  become_user: cherrymusic
+
+- name: "create config dir"
+  file: name=/home/cherrymusic/.config/cherrymusic/ state=directory
+
+- name: "copy config"
+  template: src=cherrymusic.conf
+    dest=/home/cherrymusic/.config/cherrymusic/cherrymusic.conf
+    owner=cherrymusic mode=0644
+
+- name: "bootstrap cherrypy"
+  shell: python3 ./cherrymusic --update 
+  args:
+    chdir: /home/cherrymusic/code/
+  become: true
+  become_user: cherrymusic
