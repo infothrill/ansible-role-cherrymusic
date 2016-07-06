@@ -17,7 +17,7 @@ Available variables are listed below, along with default values (see defaults/ma
 
 The path were the music files are located (or where symlinks to the actual music files are located).
 
-	cherrymusic_fetch_album_art: "True"
+	cherrymusic_fetch_album_art: true
 
 Wether to fetch album art.
 
@@ -33,7 +33,7 @@ Including an example of how to use your role (for instance, with variables passe
 
     - hosts: servers
       roles:
-         - { role: infothrill.cherrymusic, cherrymusic_fetch_album_art: "False" }
+         - { role: infothrill.cherrymusic, cherrymusic_fetch_album_art: false }
 
 License
 -------
