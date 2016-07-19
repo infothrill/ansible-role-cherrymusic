@@ -25,6 +25,10 @@ Wether to fetch album art.
 
 The unix user for running cherrymusic.
 
+	cherrymusic_update: false
+
+Wether "cherrymusic --update" should be run.
+
 Dependencies
 ------------
 

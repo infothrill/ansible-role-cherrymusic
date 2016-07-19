@@ -12,12 +12,16 @@
     - lame
     - python3-unidecode
     - git
-# Optionally, you can replace the packages “mpg123”, “faad”, “vorbis-tools”,
-# “flac” and “lame” with “ffmpeg” if you like. The advantage with ffmpeg is
-# that you can also decode WMA files
+# Optionally, you can replace the packages "mpg123", "faad", "vorbis-tools",
+# "flac" and "lame" with "ffmpeg" if you like. The advantage with ffmpeg is
+# that you can also decode WMA files.
 
 - name: "adduser"
-  user: name="{{ cherrymusic_user }}" home="/home/{{ cherrymusic_user }}" createhome=yes state=present system=no
+  user: name="{{ cherrymusic_user }}"
+    home="/home/{{ cherrymusic_user }}"
+    createhome=yes
+    state=present
+    system=no
 
 - name: "git clone"
   git:
@@ -30,7 +34,10 @@
   become_user: "{{ cherrymusic_user }}"
 
 - name: "copy our cherrypy bootstrap script"
-  copy: src=bootstrap.py dest="/home/{{ cherrymusic_user }}/code/bootstrap.py" owner=cherrymusic mode=0755
+  copy: src=bootstrap.py
+    dest="/home/{{ cherrymusic_user }}/code/bootstrap.py"
+    owner=cherrymusic
+    mode=0755
 
 - name: "bootstrap cherrypy"
   shell: echo "y" | python3 bootstrap.py
@@ -53,8 +60,9 @@
     mode=0644
 
 - name: "bootstrap cherrypy"
-  shell: python3 ./cherrymusic --update
+  command: python3 ./cherrymusic --update
   args:
     chdir: "/home/{{ cherrymusic_user }}/code/"
+  when: "{{ cherrymusic_update }}"
   become: true
   become_user: "{{ cherrymusic_user }}"
