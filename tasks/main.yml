@@ -16,41 +16,45 @@
 # “flac” and “lame” with “ffmpeg” if you like. The advantage with ffmpeg is
 # that you can also decode WMA files
 
-- name: "adduser cherrymusic"
-  user: name=cherrymusic home=/home/cherrymusic createhome=yes state=present system=no
+- name: "adduser"
+  user: name="{{ cherrymusic_user }}" home="/home/{{ cherrymusic_user }}" createhome=yes state=present system=no
 
-- name: "git clone cherrymusic"
+- name: "git clone"
   git:
     repo=git://github.com/devsnd/cherrymusic.git
-    dest=/home/cherrymusic/code/
+    dest="/home/{{ cherrymusic_user }}/code/"
     version=devel
     accept_hostkey=yes
     update=yes
   become: true
-  become_user: cherrymusic
+  become_user: "{{ cherrymusic_user }}"
 
 - name: "copy our cherrypy bootstrap script"
-  copy: src=bootstrap.py dest=/home/cherrymusic/code/bootstrap.py owner=cherrymusic mode=0755
+  copy: src=bootstrap.py dest="/home/{{ cherrymusic_user }}/code/bootstrap.py" owner=cherrymusic mode=0755
 
 - name: "bootstrap cherrypy"
   shell: echo "y" | python3 bootstrap.py
   args:
-    chdir: /home/cherrymusic/code/
-    creates: /home/cherrymusic/code/cherrypy
+    chdir: "/home/{{ cherrymusic_user }}/code/"
+    creates: "/home/{{ cherrymusic_user }}/code/cherrypy"
   become: true
-  become_user: cherrymusic
+  become_user: "{{ cherrymusic_user }}"
 
 - name: "create config dir"
-  file: name=/home/cherrymusic/.config/cherrymusic/ state=directory
+  file: name="/home/{{ cherrymusic_user }}/.config/cherrymusic/"
+    state=directory
+    owner="{{ cherrymusic_user }}"
+    mode=0755
 
 - name: "copy config"
   template: src=cherrymusic.conf
-    dest=/home/cherrymusic/.config/cherrymusic/cherrymusic.conf
-    owner=cherrymusic mode=0644
+    dest="/home/{{ cherrymusic_user }}/.config/cherrymusic/cherrymusic.conf"
+    owner="{{ cherrymusic_user }}"
+    mode=0644
 
 - name: "bootstrap cherrypy"
   shell: python3 ./cherrymusic --update
   args:
-    chdir: /home/cherrymusic/code/
+    chdir: "/home/{{ cherrymusic_user }}/code/"
   become: true
-  become_user: cherrymusic
+  become_user: "{{ cherrymusic_user }}"

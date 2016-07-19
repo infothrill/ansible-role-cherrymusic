@@ -21,6 +21,10 @@ The path were the music files are located (or where symlinks to the actual music
 
 Wether to fetch album art.
 
+	cherrymusic_user: "cherrymusic"
+
+The unix user for running cherrymusic.
+
 Dependencies
 ------------
 

@@ -2,3 +2,4 @@
 # defaults file for cherrymusic
 cherrymusic_basedir: /cherrymusic
 cherrymusic_fetch_album_art: true
+cherrymusic_user: "cherrymusic"
