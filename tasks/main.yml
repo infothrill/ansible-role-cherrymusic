@@ -33,7 +33,7 @@
   copy: src=bootstrap.py dest=/home/cherrymusic/code/bootstrap.py owner=cherrymusic mode=0755
 
 - name: "bootstrap cherrypy"
-  shell: echo "y" | python3 bootstrap.py 
+  shell: echo "y" | python3 bootstrap.py
   args:
     chdir: /home/cherrymusic/code/
     creates: /home/cherrymusic/code/cherrypy
@@ -49,7 +49,7 @@
     owner=cherrymusic mode=0644
 
 - name: "bootstrap cherrypy"
-  shell: python3 ./cherrymusic --update 
+  shell: python3 ./cherrymusic --update
   args:
     chdir: /home/cherrymusic/code/
   become: true
