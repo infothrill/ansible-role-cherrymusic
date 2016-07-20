@@ -59,7 +59,7 @@
     owner="{{ cherrymusic_user }}"
     mode=0644
 
-- name: "bootstrap cherrypy"
+- name: "cherrypy update"
   command: python3 ./cherrymusic --update
   args:
     chdir: "/home/{{ cherrymusic_user }}/code/"
