@@ -29,6 +29,10 @@ The unix user for running cherrymusic.
 
 Wether "cherrymusic --update" should be run.
 
+	cherrymusic_port: 8080
+
+The port to listen on.
+
 Dependencies
 ------------
 
