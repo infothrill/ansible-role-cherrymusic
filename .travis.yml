@@ -5,6 +5,10 @@ python: "2.7"
 # Use the new container infrastructure
 sudo: false
 
+env:
+  - ANSIBLE_VERSION=latest
+  - ANSIBLE_VERSION=2.1.0.0
+
 # Install ansible
 addons:
   apt:
@@ -13,8 +17,8 @@ addons:
 
 install:
   # Install ansible and linter
-  - pip install ansible
-  - pip install ansible-lint==3.2.0
+  - if [ "$ANSIBLE_VERSION" = "latest" ]; then pip install --no-binary ansible ansible; else pip install --no-binary ansible ansible==$ANSIBLE_VERSION; fi
+  - pip install ansible-lint==3.2.5
 
   # Check versions
   - ansible --version
