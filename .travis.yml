@@ -1,9 +1,9 @@
 ---
+sudo: required
+dist: trusty
+
 language: python
 python: "2.7"
-
-# Use the new container infrastructure
-sudo: false
 
 env:
   - ANSIBLE_VERSION=latest
