@@ -63,6 +63,6 @@
   command: python3 ./cherrymusic --update
   args:
     chdir: "/home/{{ cherrymusic_user }}/code/"
-  when: "{{ cherrymusic_update }}"
+  when: cherrymusic_update
   become: true
   become_user: "{{ cherrymusic_user }}"

@@ -1,0 +1,6 @@
+FROM ubuntu:16.04
+
+RUN apt-get update -qq && apt-get install -qqy python sudo
+
+RUN apt-get update -qq && apt-get install -qqy python3 mpg123 faad vorbis-tools \
+	flac imagemagick lame python3-unidecode git
