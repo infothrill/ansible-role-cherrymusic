@@ -1,7 +1,9 @@
 ---
 # tasks file for cherrymusic
 - name: "install packages"
-  apt: pkg={{item}} state=present
+  apt: pkg="{{ item }}"
+    state=present
+    cache_valid_time=28800 # 8h
   with_items:
     - python3
     - mpg123
