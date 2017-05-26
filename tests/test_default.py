@@ -5,8 +5,7 @@ testinfra_hosts = testinfra.utils.ansible_runner.AnsibleRunner(
 
 
 def test_hosts_file(File):
-    f = File('/etc/hosts')
+    f = File('/home/cherrymusic/.config/cherrymusic/cherrymusic.conf')
 
     assert f.exists
-    assert f.user == 'root'
-    assert f.group == 'root'
+    assert f.user == 'cherrymusic'
