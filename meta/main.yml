@@ -1,7 +1,8 @@
 galaxy_info:
+  role_name: cherrymusic
   author: Paul Kremer
   description: Installs cherrymusic
-  company: Snakeoil
+  company: "n/a"
 
   license: BSD
 
