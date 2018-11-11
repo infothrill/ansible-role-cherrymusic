@@ -1,22 +1,22 @@
 ---
 # tasks file for cherrymusic
 - name: "install packages"
-  apt: pkg="{{ item }}"
-    state=present
-    cache_valid_time=28800  # 8h
-  with_items:
-    - python3
-    - mpg123
-    - faad
-    - vorbis-tools
-    - flac
-    - imagemagick
-    - lame
-    - python3-unidecode
-    - git
-# Optionally, you can replace the packages "mpg123", "faad", "vorbis-tools",
-# "flac" and "lame" with "ffmpeg" if you like. The advantage with ffmpeg is
-# that you can also decode WMA files.
+  apt:
+    name:
+      - python3
+      - mpg123
+      - faad
+      - vorbis-tools
+      - flac
+      - imagemagick
+      - lame
+      - python3-unidecode
+      - git
+    state: present
+    cache_valid_time: 28800  # 8h
+    # Optionally, you can replace the packages "mpg123", "faad", "vorbis-tools",
+    # "flac" and "lame" with "ffmpeg" if you like. The advantage with ffmpeg is
+    # that you can also decode WMA files.
 
 - name: "adduser"
   user: name="{{ cherrymusic_user }}"
