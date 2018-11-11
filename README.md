@@ -1,7 +1,12 @@
 Ansible role: cherrymusic
 =========================
 
-Installs [cherrymusic](http://www.fomori.org/cherrymusic/) on a Linux system.
+[![Build Status](https://img.shields.io/travis/infothrill/ansible-role-cherrymusic/master.svg?label=travis_master)](https://travis-ci.org/infothrill/ansible-role-cherrymusic)
+[![Updates](https://pyup.io/repos/github/infothrill/ansible-role-cherrymusic/shield.svg)](https://pyup.io/repos/github/infothrill/ansible-role-cherrymusic/)
+[![Ansible Role](https://img.shields.io/ansible/role/10778.svg)](https://galaxy.ansible.com/infothrill/cherrymusic/)
+
+
+An [Ansible](http://www.ansible.com) role to install [cherrymusic](http://www.fomori.org/cherrymusic/) on a Linux system.
 
 Requirements
 ------------
