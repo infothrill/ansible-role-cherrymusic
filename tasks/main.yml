@@ -42,7 +42,9 @@
     mode=0755
 
 - name: "bootstrap cherrypy"
-  shell: echo "y" | python3 bootstrap.py
+  shell: |
+    set -o pipefail
+    echo "y" | python3 bootstrap.py
   args:
     chdir: "/home/{{ cherrymusic_user }}/code/"
     creates: "/home/{{ cherrymusic_user }}/code/cherrypy"
