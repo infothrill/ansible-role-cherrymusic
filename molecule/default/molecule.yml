@@ -8,8 +8,6 @@ driver:
 lint:
   name: yamllint
 platforms:
-  - name: cherrymusic-ubuntu-1404
-    image: ubuntu:14.04
   - name: cherrymusic-ubuntu-1604
     image: ubuntu:16.04
   - name: cherrymusic-ubuntu-1804
